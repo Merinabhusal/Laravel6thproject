@@ -1,0 +1,21 @@
+.navbar{
+    background-color:blueviolet;
+    padding:15px;
+}
+.menu{
+    text-align: right;
+}
+.menu li{
+    display: inline;
+    margin:10px
+}
+.menu a{
+    text-decoration: none;
+    color:white;
+    font-size:20px;
+}
+img{
+    height: 200px;
+    width: 200px;
+    margin-top: 40px;
+}

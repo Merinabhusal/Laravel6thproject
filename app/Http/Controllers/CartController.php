@@ -11,11 +11,31 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function include(){
+    //     if(!auth()->user())
+    //     {
+    //         $itemsincart = 0;
+    //     }
+    //     else
+    //     {
+    //         $itemsincart = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->count();
+    //     }
+    // }
     public function index()
     {
-        $categories = Category::orderBy('priority')->get();
-        $carts = Cart::where('user_id',auth()->user()->id)->get();
-        return view('viewcart',compact('carts','categories'));
+        if(!auth()->user())
+        {
+            $itemsincart = 0;
+        }
+        else
+        {
+            $itemsincart = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->count();
+        }   
+       
+        // $categories = Category::orderBy('priority')->get();
+        $categories= Category::orderBy('priority')->get();
+        $carts = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->get();
+        return view('viewcart',compact('carts','categories','itemsincart'));
     }
 
     /**
@@ -39,7 +59,7 @@ class CartController extends Controller
         $data['user_id'] = auth()->user()->id;
 
         //check if already exist
-        $check = Cart::where('product_id',$data['product_id'])->where('user_id',$data['user_id'])->count();
+        $check = Cart::where('product_id',$data['product_id'])->where('user_id',$data['user_id'])->where('is_ordered',false)->count();
         if($check > 0)
         {
             return back()->with('success','Item already in Cart');
@@ -78,8 +98,37 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-       
-        $cart->delete();
+        $cart=Cart::find($cart->dataid);
+        if ($cart) {
+            $cart->delete();
+        } else {
+           
+
+        }
         return redirect(route('cart.index'))->with('success','Cart deleted successfully');
+     
+    }
+
+    public function checkout()
+    {
+        if(!auth()->user())
+        {
+            $itemsincart = 0;
+        }
+        else
+        {
+            $itemsincart = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->count();
+        }   
+       
+        $categories = Category::orderBy('priority')->get();
+        $carts=Cart::where('user_id',auth()-> user()->id)->get();
+        $totalamount=0;
+        foreach($carts as $cart)
+        {
+            $total = $cart->qty * $cart->product->price;
+            $cart->subtotal =$total;
+            $totalamount+=$total;
+        }
+        return view('checkout',compact('categories','itemsincart','totalamount'));
     }
 }

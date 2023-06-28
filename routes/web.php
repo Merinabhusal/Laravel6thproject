@@ -6,10 +6,12 @@ use App\Http\Controllers\customercontroller;
 use App\Http\Controllers\Customercontroller as ControllersCustomercontroller;
 use App\Http\Controllers\Gallarycontroller;
 use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserProfileController;
 use App\Models\Cart;
 use App\Models\Gallery;
 use App\Models\Product;
@@ -36,6 +38,7 @@ Route::get('/userlogin',[PagesController::class,'userlogin'])->name('userlogin')
 Route::get('/userregister',[UserController::class,'userregister'])->name('user.register');
 Route::post('/userregister',[UserController::class,'userstore'])->name('user.register');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified','isadmin'])->name('dashboard');
@@ -44,6 +47,17 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function(){
     Route::get('/mycart',[CartController::class,'index'])->name('cart.index');
     Route::post('/mycart/store',[CartController::class,'store'])->name('cart.store');
+    Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
+    Route::get('/checkout',[CartController::class,'checkout'])->name('cart.checkout');
+
+    Route::get('/myorders',[PagesController::class,'orders'])->name('user.order');
+
+    
+   
+ Route::get('/profile',[UserProfileController::class,'show']);
+    Route::put('/profile',[UserProfileController::class,'update']);
+    Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.store');
+
 });
 
 
@@ -94,7 +108,7 @@ Route::middleware(['auth','isadmin'])->group(function () {
 
    
 
-    
+   
     
 
 

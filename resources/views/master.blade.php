@@ -7,42 +7,97 @@
     <title>Glamour Cosmetics</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="{{asset('datatable/jquery-3.6.0.js')}}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="flex px-24 justify-between bg-gray-300 text-lg">
-        <span>Ph: 0564564656</span>
-        @if(auth()->user())
-            <div>
-                <a href="">{{auth()->user()->name}} /</a>
-                <form class="inline" action="{{route('logout')}}" method="POST">
-                    @csrf
-                    <button type="submit"> Logout</button>
-                </form>
-                <a href="{{route('cart.index')}}"> My Cart</a>
-            </div>
-            @else
-        <span><a href="{{route('userlogin')}}">Login/Register</a></span>
-        @endif
+ 
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script type="text/javascript">
+  var swiper = new Swiper(".myswiper", {
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+  
+<a href="">
+  <style>
+    h2 {
+      color: #f543ae;
+      font-family: Georgia, serif;
+      font-size: 25px;
+      font-weight: bold;
+      text-transform:uppercase;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flex px-24 justify-between bg-gray-300 p-2 text-lg">
+    <h2>Glamour cosmetics</h2>
+    @if(auth()->user())
+    <div>
+        <a href="">
+          <i class='bx bx-user' ></i>
+          {{auth()->user()->name}} 
+        </a>
+        <form class="inline" action="{{route('logout')}}" method="POST">
+            @csrf
+            <input type="submit" class="bg-blue-600 text-white cursor-pointer" value="Logout">
+        </form>
+        <div>
+
+          <a href="{{route('cart.index')}}"> <i class='bx bxs-cart'></i>
+
+            Cart
+            <span class="badge badge-light">{{$itemsincart}}</span>
+           
+          </a>
+         </div>
+  
+          
+     
+</span>
+
     </div>
-    <nav class="navbar sticky top-0">
-        <ul class="menu">
-            <li><a href="/">Home</a></li>
-            @foreach($categories as $category)
-            <li><a href="{{route('showproducts',$category->id)}}"> {{$category->name}} </a></li>
+    @else
+<span><a href="{{route('userlogin')}}">Login/Register</a></span>
+@endif
+</div>
+<nav class="navbar sticky top-0 ">
 
-            @endforeach
-            
-        </ul>
-    </nav>
+  <ul class="menu">
+    <li><a href="/">Home</a></li>
+    @foreach($categories as $category)
+    <li><a href="{{route('showproducts',$category->id)}}"> {{$category->name}} </a></li>
 
-    @yield('content')
+    @endforeach
+  </ul>
+</nav>
 
+
+
+
+  
+    
+
+
+
+@yield('content')
+
+</body>
+</a>
+       
      <!-- Footer section -->
      <style>
         .footer {
-          background-color: #b06ca8;
+          background-color:gray;
           /* Additional styling properties for the footer */
           /* height, width, padding, etc. */
         }
@@ -53,109 +108,83 @@
     
             <footer id="footer">
                 <!-- top footer -->
-                <div class="section p-1">
+                <div class="section p-20">
                     <!-- container -->
                     <div class="container">
                         <!-- row -->
                         <div class="flex justify-around">
                             
-                            
-
                              
                             <footer class="footer">
                                 <div class="container">
                                   <div class="row">
-                                    <div class="col-md-4">
-                                      <h4>Contact Us</h4>
-                                      <p>123 Glamour Beauty</p>
-                                      <p>Nepal,ktm</p>
-                                      <p>Phone: (123) 456-7890</p>
-                                      <p>Email: info@example.com</p>
-                                    </div>
-                                    <div class="col-md-4">
-                                      <h4>Follow Us</h4>
-                                      <ul class="social-media">
-                                        <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                      </ul>
-                                    </div>
-
-                                      
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      
-                                      <p>&copy; 2023 Beauty Co. All rights reserved.</p>
-                                    </div>
+                                  <div>
+                                    <h3 class="text-black-600 hover:text-yellow-400 cursor-pointer text-x1 font-bold mt-5">Links
+                                   </h3>
+                                   <ul class="mt-2">
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">About Us</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Contact Us</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Blog</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Our beauty services</a>
+                                    </li>
+                                   
+                                   </ul>
                                   </div>
-                                </div>
+
+                                  
+
+
+
+
+                                    <div class="w-full">
+                                      <div class="md:mx-24 mx-5 pt-4 pb-4">
+                                        <div class="grid grid-cols-2">
+                                          <div class="text-black font-bold hover:text-yellow-200 font-serif text-lg">
+                                            <p>&copy; 2023 Beauty Co. All rights reserved.</p>
+                                          </div>
+                                        </div>
+                                       
+                                      </div> 
+                                 
+                                    </div>
+                                 
                               </footer>
                               
 
+                              <footer class="footer">
+                                <div class="container">
+                                  <div class="row">
+                                  <div>
+                                    <h3 class="text-black-600 hover:text-yellow-400 cursor-pointer text-x1 font-bold mt-5">About Us
+                                   </h3>
+                                   <ul class="mt-2">
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Products</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Shipping and Returns</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Privacy Policy</a>
+                                    </li>
+                                    <li> 
+                                      <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Terms and Condition</a>
+                                    </li>
+                                   
+                                   </ul>
+                                  </div>
 
-                             
-    
-                         
+                                  
 
-                            <div class="row">
-                                <div class="col-md-3 col-xs-6 ">
-                                    <div class="container">
-                                        <p style="text-align:center; color:rgb(15, 14, 14) </p>
-                                        <h3 class= "footer-title >Categories</h3>
-                                        <ul class="footer-links">
-                                            <p style="text-align:center;
-                                             <li><a href=">SkinCare</a></li>
-                                              <p style="text-align: center;
-                                            <li><a href="#> Haircare</a></li>
-                                             <p style="text-align: center;
-                                            <li><a href="#>Makeup</a></li>
-                                             <p style="text-align: center;
-                                             <li><a href="#>Nails</a></li>
-                                             <p style="text-align: center;
-                                            <li><a href="#>Fragrances</a></li>
-                                            <p style="text-align: center;
-                                            <li><a href="#>Organic and Natural</a></li>
-    
-                                        </p>
-    
-                             </div>
-                                
-                                           
-                                        
-                                            
-                                        </ul>
-                                    </div>
-                                </div> 
-                                <div class="row">
-                                    <div class="col-md-3 col-xs-6 ">
-                                        <div class="container">
-                                            <p style="text-align:center; color:rgb(15, 14, 14) </p>
-                                            <h3 class= "footer-title >About Us</h3>
-                                            <ul class="footer-links">
-                                                <p style="text-align:center;
-                                                 <li><a href="img>Products</a></li>
-                                                  <p style="text-align: center;
-                                                <li><a href="#> Shipping and returns</a></li>
-                                                 <p style="text-align: center;
-                                                <li><a href="#>Privacy Policy</a></li>
-                                                <p style="text-align: center;
-                                                <li><a href="#>Terms and condition</a></li>
-        
-                                            </p>
-        
-                                 </div>
-                                    
-                                               
-                                            
-                                                
-                                            </ul>
-                                        </div>
-                                    </div> 
-                            
-                            <div class="clearfix visible-xs"></div>
-    
-                            
+
+                           
                         </div>
                         <!-- /row -->
                     </div>

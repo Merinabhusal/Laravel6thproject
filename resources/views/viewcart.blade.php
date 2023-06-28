@@ -25,6 +25,12 @@
 @endforeach
 </div>
 
+
+
+<div class="mx-24 my-20">
+    <a href="{{route('cart.checkout')}}"class="bg-blue-600 text-white px-10 py-5 rounded text-lg">CheckOut</a>
+</div>
+
 <script>
     var qty=document.getElementById('qty');
 

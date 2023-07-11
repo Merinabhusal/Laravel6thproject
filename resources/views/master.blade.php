@@ -7,25 +7,17 @@
     <title>Glamour Cosmetics</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
     <script src="{{asset('datatable/jquery-3.6.0.js')}}"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
  
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-<script type="text/javascript">
-  var swiper = new Swiper(".myswiper", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-</script>
   
-<a href="">
+
   <style>
     h2 {
       color: #f543ae;
@@ -73,7 +65,7 @@
 <nav class="navbar sticky top-0 ">
 
   <ul class="menu">
-    <li><a href="/">Home</a></li>
+   
     @foreach($categories as $category)
     <li><a href="{{route('showproducts',$category->id)}}"> {{$category->name}} </a></li>
 
@@ -81,15 +73,51 @@
   </ul>
 </nav>
 
+<div class="md:mx-24 mx-10 mt-10">
+  <div class="grid md: grid-cols-3 gap-4">
+    <div class="md:row-span-2">
+      <img src="https://th.bing.com/th/id/R.6a1d0fcb2d975b7e1d491728853a9852?rik=yVoEd7sjM2JMjg&pid=ImgRaw&r=0" alt class="w-full hover:text-green-200">
+    </div>
 
 
+    <div class="md:col-start-2">
+      <img src="https://i.pinimg.com/originals/58/45/68/5845687bc2b38d76da109ad220d907bd.png" alt class="w-full  hover:text-green-200">
+    </div>
+    
+    <div class="md:col-start-3">
+      <img src="https://th.bing.com/th/id/R.5c188ae2a3658b030f50256a776b73e4?rik=lTB6%2b2Ej%2fKWgZQ&pid=ImgRaw&r=0" alt class="w-full  hover:text-green-200">
+    </div>
+
+   
+    
+    
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
 
   
-    
+  @yield('content')
 
 
 
-@yield('content')
+
 
 </body>
 </a>
@@ -149,6 +177,18 @@
                                           <div class="text-black font-bold hover:text-yellow-200 font-serif text-lg">
                                             <p>&copy; 2023 Beauty Co. All rights reserved.</p>
                                           </div>
+                                          <div class="flex justify-end items-end">
+                                        <span>
+                   <img src="https://th.bing.com/th/id/R.27fd96811fb22e994704e1811f672339?rik=a11ODhfsbBgpwQ&pid=ImgRaw&r=0" alt class="w-16 h-5 inline-block  hover:text-yellow-200 font-serif text-lg">
+                  <img src="https://th.bing.com/th/id/R.0ced1ba874eec24ce45a575619222e6f?rik=EeXsrIQ3vcHdwQ&pid=ImgRaw&r=0" alt class="w-16 h-5 inline-block  hover:text-yellow-200 font-serif text-lg">
+                  <img src="https://th.bing.com/th/id/OIP.eyPnfaNq1o1TX7spcuKKxAHaCf?pid=ImgDet&rs=1" alt class="w-16 h-5 inline-block  hover:text-yellow-200 font-serif text-lg">
+                  
+                           </span>
+
+                                        
+                                          </div>
+
+
                                         </div>
                                        
                                       </div> 

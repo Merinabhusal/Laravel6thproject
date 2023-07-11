@@ -48,7 +48,7 @@
                 
                 <a href="{{ route('customer.index') }}" class="text-x1 font-bold border-b-2 border-blue-500 block m1-4 px-2 py-1 hover:bg-blue-500 hover:text-white">Customers</a>
                
-                <a href="{{ route('customer.index') }}" class="text-x1 font-bold border-b-2 border-blue-500 block m1-4 px-2 py-1 hover:bg-blue-500 hover:text-white">Orders</a>
+                <a href="{{ route('order.index') }}" class="text-x1 font-bold border-b-2 border-blue-500 block m1-4 px-2 py-1 hover:bg-blue-500 hover:text-white">Orders</a>
                 <form action="{{route('logout')}}"method="POST">
                     @csrf
                 <input type="submit" value="Logout " class="text-x1 font-bold border-b-2 border-blue-500 block m1-4 px-2 py-1 hover:bg-blue-500 hover:text-white">

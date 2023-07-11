@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
-use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    //
-
     public function userregister()
     {
         $categories = Category::orderBy('priority')->get();
@@ -33,7 +29,10 @@ class UserController extends Controller
         $data['password'] = Hash::make($data['password']);
         $data['role'] = 'user';
 
-         User::create($data);
+        User::create($data);
+
+        
+
         return redirect(route('home'));
     }
 }

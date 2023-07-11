@@ -47,7 +47,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function(){
     Route::get('/mycart',[CartController::class,'index'])->name('cart.index');
     Route::post('/mycart/store',[CartController::class,'store'])->name('cart.store');
-    Route::post('/order/store',[OrderController::class,'store'])->name('order.store');
+    Route::post('/order/store',[OrderController::class,'store'])->name('order .store');
     Route::get('/checkout',[CartController::class,'checkout'])->name('cart.checkout');
 
     Route::get('/myorders',[PagesController::class,'orders'])->name('user.order');
@@ -59,6 +59,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/profile', [UserProfileController::class, 'store'])->name('profile.store');
 
 });
+
 
 
 Route::get('/showproducts/{id}', [PagesController::class, 'showproducts'])->name('showproducts');
@@ -106,6 +107,16 @@ Route::middleware(['auth','isadmin'])->group(function () {
     Route::post('/product/{id}/update',[ProductController::class,'update'])->name('product.update');
     Route::post('/product/destroy',[ProductController::class,'destroy'])->name('product.destroy'); 
 
+
+    // 
+    
+    //products
+    Route::get('/order',[OrderController::class,'index'])->name('order.index');
+    Route::get('/order/create',[OrderController::class,'create'])->name('order.create');
+    Route::post('/order',[OrderController::class,'store'])->name('order.store');
+    Route::get('/order/{id}/edit',[OrderController::class,'edit'])->name('order.edit');
+    Route::post('/order/{id}/update',[OrderController::class,'update'])->name('order.update');
+    Route::post('/order/destroy',[OrderController::class,'destroy'])->name('order.destroy'); 
    
 
    

@@ -8,10 +8,8 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('carts', function (Blueprint $table) {
             $table->boolean('is_ordered')->default(false);
@@ -20,10 +18,8 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down():void
+    public function down(): void
     {
         Schema::table('carts', function (Blueprint $table) {
             $table->dropColumn('is_ordered');

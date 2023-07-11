@@ -3,33 +3,12 @@
 
 <div class="bg-gray-100 rounded-lg shadow-lg relative ">
     <section class="slider_container">
-        <div class="container">
-          <div class="swiper myswiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="image/slide1.jpg" alt=""class="h-[700px]w-full width-100% object-cover rounded-t-lg">
-                </div>
-             
+        
+
          
-              <div class="swiper-slide">
-              
-                  <img src="image/slide1.jpg">
-                </div>
              
-           
-              <div class="swiper-slide">
-              
-                  <img src="image/slide2.jpg">
-           
              
-              </div>
-              <div class="swiper-slide">
               
-                <img src="image/slide3.jpg">
-         
-           
-            </div>
-          
               
               <div class="flex px-5 justify-between bg-gray-300 text-lg">
       

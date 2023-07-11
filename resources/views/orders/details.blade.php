@@ -2,39 +2,32 @@
 @section('content')
 @include('layouts.message')
 
-    <h2 class="font-bold text-4xl text-blue-700">Orders</h2> 
+    <h2 class="font-bold text-4xl text-blue-700">Order Details</h2> 
     <hr class="h-1 bg-blue-200">
 
 
     <table id="mytable" class="display">
         <thead>
-            <th>Order Date</th>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Address</th>
-            <th>Amount</th>
-            <th>Payment Mode</th>
-            <th>Status</th>
-            <th>Action</th>
+            <th>Product</th>
+            <th>Product Name</th>
+            <th>Rate</th>
+            <th>Qty</th>
+            <th>Total</th>
         </thead>
         <tbody>
-            @foreach($orders as $order)
+            @foreach($carts as $cart)
             <tr>
-                <td>{{$order->order_date}}</td>
-                <td>{{$order->person_name}}</td>
-                <td>{{$order->phone}}</td>
-                <td>{{$order->shipping_address}}</td>
-                <td>{{$order->amount}}</td>
-                <td>{{$order->payment_method}}</td>
-                <td>{{$order->status}}</td>
-                <td>
-                    <a href="{{route('order.details',$order->id)}}" class="bg-blue-600 text-white px-2 py-1 rounded-lg">View Details</a>
-                    <a  onclick="return confirm('Are you sure to change status?')" href="{{route('order.status',[$order->id,"Processing"])}}" class="bg-green-600 text-white px-2 py-1 rounded-lg">Processing</a>
-                    <a  onclick="return confirm('Are you sure to change status?')" href="{{route('order.status',[$order->id,"Completed"])}}" class="bg-green-600 text-white px-2 py-1 rounded-lg">Completed</a>
-                </td>
+                <td><img class="w-12" src="{{asset('images/products/'.$cart->product->photopath)}}" alt=""></td>
+                <td>{{$cart->product->name}}</td>
+                <td>{{$cart->product->price}}</td>
+                <td>{{$cart->qty}}</td>
+                <td>{{$cart->qty * $cart->product->price}}</td>
+               
             </tr>
             @endforeach
         </tbody>
+
+        GRand total : {{$order->amount}}
     </table>
 
     {{-- backdrop-filter: blur(15px); --}}

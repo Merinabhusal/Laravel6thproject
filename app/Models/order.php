@@ -15,4 +15,8 @@ class order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class,'cart_order','order_id','id');
+    }
 }

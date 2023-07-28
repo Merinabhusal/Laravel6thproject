@@ -29,19 +29,26 @@ class OrderController extends Controller
         }
         $data['amount'] = $totalamount;
         $ids = $carts->pluck('id')->toArray();
-        $data['cart_id'] = implode(',', $ids);
-        Order::create($data);
+
+       $data['cart_id'] = implode(',', $ids);
+       
+        
+       $order= Order::create($data);
+
+      
+
+      
         Cart::whereIn('id', $ids)->update(['is_ordered' => true]);
         
-        //mail when order is placed
+        /*mail when order is placed
         $data = [
             'name' => auth()->user()->name,
             'mailmessage' => 'New Order has been placed',
     			];
- 		Mail::send('email.email',$data, function ($message){
+ 		/* Mail::send('email.email',$data, function ($message){
  			$message->to(auth()->user()->email)
  			->subject('New Order Placed');
- 		});
+ 		}); */
 
 
         return redirect()->route('home')->with('success', 'Order has been placed successfully');

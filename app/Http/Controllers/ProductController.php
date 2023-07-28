@@ -65,9 +65,30 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+   
+     public function show($id)
+     {
+         $product = Product::findOrFail($id);
+ 
+         return view('product.show', compact('product'));
+     }
+    
+
+    public function decreaseStock(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        // Assuming you have a 'quantity' field in the request sent when a product is purchased.
+        $quantityPurchased = $request->input('quantity');
+
+        if ($product->stock >= $quantityPurchased) {
+            $product->stock-= $quantityPurchased;
+            $product->save();
+
+            return redirect()->route('product.show', $id)->with('success', 'Stock updated successfully.');
+        } else {
+            return redirect()->route('product.show', $id)->with('error', 'Insufficient stock.');
+        }
     }
 
     /**

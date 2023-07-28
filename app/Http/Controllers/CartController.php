@@ -8,7 +8,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class PagesController extends Controller
+class CartController extends Controller
 {
     public function include()
     {
@@ -18,6 +18,7 @@ class PagesController extends Controller
         }
         else
         {
+
             return Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->count();
         }
     }
@@ -27,6 +28,23 @@ class PagesController extends Controller
         $products = Product::paginate(2);
         $categories = Category::orderBy('priority')->get();
         return view('welcome',compact('products','categories','itemsincart'));
+    }
+
+    public function index()
+    {
+        if(!auth()->user())
+        {
+            $itemsincart = 0;
+        }
+        else
+        {
+            $itemsincart = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->count();
+
+
+        }
+        $categories = Category::orderBy('priority')->get();
+        $carts = Cart::where('user_id',auth()->user()->id)->where('is_ordered',false)->get();
+        return view('viewcart',compact('carts','categories','itemsincart'));
     }
 
     public function about()
@@ -93,7 +111,56 @@ class PagesController extends Controller
             'photopath'=>'required'
         ]);
         */
-        dd($request);
 
+     
+            $data = $request->validate([
+                'qty' => 'required',
+                'product_id' => 'required',
+            ]);
+    
+            $data['user_id'] = auth()->user()->id;
+    
+            $data['qty']=$request->qty;
+            //check if already exist
+            $check = Cart::where('product_id',$data['product_id'])->where('user_id',$data['user_id'])->where('is_ordered',false)->count();
+            if($check > 0)
+            {
+                return back()->with('success','Item already in Cart');
+            }
+    
+            Cart::create($data);
+            return back()->with('success','Item added to Cart');
+        }
+
+        public function checkout()
+        {
+
+           $totalamount=session()->get('totalamount');
+            if(!auth()->user())
+            {
+                $itemsincarts = 0;
+            }
+            else
+            {
+                $itemsincart= Cart::where('user_id',auth()->user()->id)->count();
+              
+            }
+            $categories = Category::orderBy('priority')->get();
+            return view('checkout',compact('categories','itemsincart','totalamount'));
+        }
+        public function destroy($id)
+        {
+            $cart = Cart::find($id);
+        
+            if (!$cart) {
+                return redirect(route('cart.index'))->with('error', 'Cart item not found');
+            }
+        
+            $cart->delete();
+        
+            return redirect(route('cart.index'))->with('success', 'Cart item deleted successfully');
+        }
+        
     }
-}
+        
+    

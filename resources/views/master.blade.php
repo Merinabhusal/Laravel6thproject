@@ -7,6 +7,9 @@
     <title>Glamour Cosmetics</title>
     <link rel="stylesheet" href="{{asset('mycss/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
@@ -65,30 +68,15 @@
 <nav class="navbar sticky top-0 ">
 
   <ul class="menu">
-   
     @foreach($categories as $category)
     <li><a href="{{route('showproducts',$category->id)}}"> {{$category->name}} </a></li>
-
+   
+    
     @endforeach
   </ul>
 </nav>
 
-<div class="md:mx-24 mx-10 mt-10">
-  <div class="grid md: grid-cols-3 gap-4">
-    <div class="md:row-span-2">
-      <img src="https://th.bing.com/th/id/R.6a1d0fcb2d975b7e1d491728853a9852?rik=yVoEd7sjM2JMjg&pid=ImgRaw&r=0" alt class="w-full hover:text-green-200">
-    </div>
 
-
-    <div class="md:col-start-2">
-      <img src="https://i.pinimg.com/originals/58/45/68/5845687bc2b38d76da109ad220d907bd.png" alt class="w-full  hover:text-green-200">
-    </div>
-    
-    <div class="md:col-start-3">
-      <img src="https://th.bing.com/th/id/R.5c188ae2a3658b030f50256a776b73e4?rik=lTB6%2b2Ej%2fKWgZQ&pid=ImgRaw&r=0" alt class="w-full  hover:text-green-200">
-    </div>
-
-   
     
     
     
@@ -152,6 +140,7 @@
                                    <ul class="mt-2">
                                     <li> 
                                       <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">About Us</a>
+                                      
                                     </li>
                                     <li> 
                                       <a href class="text-black-500 hover:text-yellow-200 font-serif text-lg">Contact Us</a>
